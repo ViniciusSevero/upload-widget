@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@theme {
+    --font-sans: "Inter", sans-serif;
+    --text-xxs: 0.625rem;     
+   
+    --animate-border: border-move 2s linear infinite;
+    
+    @keyframes border-move {
+        to { "--border-angle": 360deg }
+    }
+}  
+
+@property --border-angle {
+    inherits: false;
+    initial-value: 0deg;
+    syntax: "<angle>";
+}
+
+
+
