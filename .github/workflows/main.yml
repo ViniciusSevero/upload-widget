@@ -9,6 +9,7 @@ env:
   AWS_S3_BUCKET_STATIC: 'my-upload-widget-web-static'
   AWS_S3_BUCKET_CDN: 'my-upload-widget-web-cdn'
   SOURCE_DIST: './dist'
+  CLOUDFRONT_INVALIDATION_ID: 'E1A95FQ2FRE011'
 
 jobs:
   build:
@@ -43,3 +44,8 @@ jobs:
         id: sync-files-to-s3-cdn
         run: |
           aws s3 sync ${{ env.SOURCE_DIST }} s3://${{ env.AWS_S3_BUCKET_CDN }}/ --delete
+
+      - name: Invalidate CDN cache
+        id: invalidate-cdn-cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ env.CLOUDFRONT_INVALIDATION_ID }} --paths "/*"
