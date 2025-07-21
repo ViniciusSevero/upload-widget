@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  AWS_S#_BUCKET: 'my-upload-widget-web-static'
+  AWS_S3_BUCKET: 'my-upload-widget-web-static'
   SOURCE_DIST: './dist'
 
 jobs:
